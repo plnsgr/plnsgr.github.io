@@ -56,30 +56,6 @@ required to excel in the field of computer security.
 <code><img height="27" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/terminal/terminal.png" alt="terminal"></code>
 <code><img height="27" src="https://cdn.worldvectorlogo.com/logos/arduino-1.svg" alt="arduino"></code>
 
-### 50ME dEt4i1$
-
-<details>
-  <summary><b>Github Stats</b></summary>
-
-  <br />
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=plnsgr&show_icons=true&hide_border=true&&count_private=true&include_all_commits=true" />
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=plnsgr&exclude_repo=KNN-Image-Classification&show_icons=true&hide_border=true&layout=compact&langs_count=8"/>
-</details>
-
-<details>
-  <br />
-  <summary><b>Machine</b></summary>
-  	<ul>
-  	  <li><b>OS:</b> Windows 11/Kali Linux</li>
-  	  <li><b>Terminal: </b> WSL User</li>
-	    <li><b>Code Editor:</b> VSCode</li>
-	    <li><b>To Stay Updated:</b> Twitter, and Hacker News</li>
-	</ul>
-</details>
-
-
-<div align="center">
-</div>
 
 ```js
 ┌──(osiris㉿ALICE)-[~]
