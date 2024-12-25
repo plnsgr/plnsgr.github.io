@@ -7,7 +7,7 @@ Welcome to the rentas CTF 2024 writeup challenge (Team scap3G04T) ! Let's learn 
 - [Reverse Engineering](#RE)
 
 ---
-## RE
+## Reverse Engineering
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Forbidden Memories
 
