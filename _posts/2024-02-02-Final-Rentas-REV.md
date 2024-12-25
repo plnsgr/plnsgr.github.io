@@ -3,8 +3,6 @@
 
 Welcome to the rentas CTF 2024 writeup challenge (Team scap3G04T) ! Let's learn together :'D
 
-## Navigate
-- [Reverse Engineering](#RE)
 
 ---
 ### Reverse Engineering
