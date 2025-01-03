@@ -3,7 +3,7 @@ title: "RENTAS REV FINAL 2024"
 date: 2024-02-02
 categories: [CTF]
 tags: [CTF]
-images: https://raw.githubusercontent.com/plnsgr/os1ris/main/rentas%20CTF/images/image1.png?raw=true
+image: https://raw.githubusercontent.com/plnsgr/os1ris/main/rentas%20CTF/images/image1.png?raw=true
 ---
 
 # WRITEUP rentas CTF 2024
