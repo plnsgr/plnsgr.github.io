@@ -46,7 +46,7 @@ required to excel in the field of computer security.
 - 💻 &nbsp; I love exploring new technologies and building cool stuff.
 - 🍕 &nbsp; Reading, Pwn & Repeat
 
-
+<script src="https://cyberdefenders.org/p/os1ris/badge"></script>
 
 ```js
 ┌──(osiris㉿ALICE)-[~]
