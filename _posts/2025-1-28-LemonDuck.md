@@ -48,12 +48,12 @@ Decode till the end point of the most readable text.
 
 ![img2](assets/3-LemonDuck/image24.png)
 
-1. Dynamic Variable Initialization:
+Dynamic Variable Initialization:
 -	`$v='?rep_'+(Get-Date -Format 'yyyyMMdd')`: This sets the variable $v to a string that includes the current date, formatted as rep_yyyyMMdd.
 
 ![img3](assets/3-LemonDuck/image25.png)
 
-2. Web Download and RSA Validation:
+Web Download and RSA Validation:
 -	`$tmps`: This defines a PowerShell function a($u) that takes a URL as input and attempts to download data from it using Net.WebClient.
 
 ![img4](assets/3-LemonDuck/image26.png)
@@ -63,17 +63,17 @@ Decode till the end point of the most readable text.
 -	
 ![img5](assets/3-LemonDuck/image27.png)
 
-3. Administrator Check:
+Administrator Check:
 -	`$sa=([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")`: Checks if the script is running with administrative privileges.
 
 ![img6](assets/3-LemonDuck/image28.png)
 
-4. Random String Generator Function:
+Random String Generator Function:
 -	getRan(): This function generates a random alphanumeric string with a length between 6 to 12 characters, based on random numbers and letters.
 
 ![img7](assets/3-LemonDuck/image29.png)
 
-5. Task Scheduler:
+Task Scheduler:
 -	The script creates tasks in Windows Task Scheduler using schtasks command. The goal is to establish persistence by creating scheduled tasks to run at regular intervals (every 120 minutes).
 
 ![img8](assets/3-LemonDuck/image30.png)
@@ -85,7 +85,7 @@ Decode till the end point of the most readable text.
 -	It uses schtasks /create /ru system /sc MINUTE /mo 120 /tn $uniq_name /F /tr "$uniq_name" to create tasks.
 
 
-6. WMI (Windows Management Instrumentation) Event Subscription Persistence:
+WMI (Windows Management Instrumentation) Event Subscription Persistence:
 -	The script attempts to create WMI Event Filters and Consumers, which would trigger PowerShell scripts based on system events. It uses a __InstanceModificationEvent filter that monitors the Win32_PerfFormattedData_PerfOS_System class for any modifications.
 
 ![img10](assets/3-LemonDuck/image32.png)
@@ -94,17 +94,17 @@ Decode till the end point of the most readable text.
 
 ![img11](assets/3-LemonDuck/image33.png)
 
-7. Command Execution via WMI:
+Command Execution via WMI:
 -	The script runs a PowerShell command in a hidden manner via WMI by creating a WMI consumer object that executes commands using cmd.exe with the PowerShell script embedded in the command line /c powershell -w hidden -c $wmicmd
 
 ![img12](assets/3-LemonDuck/image34.png)
 
-8. Registry Manipulation:
+Registry Manipulation:
 -	The script attempts to modify a registry key : `(HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\DisableCompression)` . The registry above used to disable file compression, likely to prevent detection or ensure the integrity of files it might deploy.
 
 ![img13](assets/3-LemonDuck/image35.png)
 
-9. URL Generation and Execution:
+URL Generation and Execution:
 •	The URL is built dynamically: `hxxp[://]U1U2/a[.]jsp?v=rep_YYYYMMDD?COMPUTERNAME*USERNAME*UUID*RANDOM`. The URI and is intended to send the content to the C2 server
 
 ---
