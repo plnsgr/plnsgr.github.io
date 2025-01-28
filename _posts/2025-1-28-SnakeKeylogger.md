@@ -24,9 +24,11 @@ SHA256 | 715a3d7675672d8474b83bedfee8e594b96856fa34a915debf9ae57c171ee366 |
 ## Case Specific Requirements
 
 > Machine
+
 o	Windows Environment
 
 > Tools uses
+
 o	OLEVBA
 o	Wireshark
 o	Fakenet
