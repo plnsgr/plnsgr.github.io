@@ -19,7 +19,7 @@ File Type | Microsoft Office Word Macro-Enabled Document (DOCM) |
 MD5 | 9ce250e7dace223506f0d22240530bb6 |
 SHA1 | 24a87a2730fb3913369ae8f67ea459afc57976bd |
 SHA256 | 715a3d7675672d8474b83bedfee8e594b96856fa34a915debf9ae57c171ee366 |
-|---|
+
 
 ## Case Specific Requirements
 
@@ -36,16 +36,20 @@ o	Fakenet
 
 ## Static Analysis
 
-While using OLEVBA, the Macro was present in this docm and the code was shown.
+While using OLEVBA, the Macro was present in this docm and the code was shown:
+
 ![img1](assets/1-SnakeKeylogger/image2.png)
+
 The code was designed to execute upon opening a document on the AutoOpen, automates downloading and executing a file. It retrieves an executable file `nawBVBlSWH7iu7T.scr` from a specified URL using HTTP requests and saves it to the `C:\ProgramData` directory. If the file is successfully downloaded, it is executed immediately. The script employs `WinHttp.WinHttpRequest` for downloading and `ADODB.Stream` for saving the file, which is a common technique in malware delivery via macros.
 
 ## Dynamic Analysis
 
 Open the `Wireshark` to check if any connection was found, and the C2 was shown.
 ![img2](assets/1-SnakeKeylogger/image3.png)
+
 Alternative was to `Fakenet` and the result also display the C2 and also the GET request
 ![img3](assets/1-SnakeKeylogger/image4.png)
+
 The program will save to `C:\ProgramData\nawBVBlSWH7iu7T.scr`
 ![img4](assets/1-SnakeKeylogger/image5.png)
 
@@ -55,7 +59,7 @@ The program will save to `C:\ProgramData\nawBVBlSWH7iu7T.scr`
 |---|
 hxxp[://]52575815-38-20200406120634[.]webstarterz[.]com/nawBVBlSWH7iu7T[.]scr | URL |
 C:\ProgramData\nawBVBlSWH7iu7T.scr | Excutable Path |
-|---|
+
 
 ## Additional Notes
 ```
