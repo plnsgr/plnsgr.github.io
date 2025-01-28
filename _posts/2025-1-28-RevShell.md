@@ -3,6 +3,7 @@ title: "RevShell"
 date: 2025-1-28
 categories: [Malware Analysis,Malware-Analysis-and-Reversing-Workshop]
 tags: [Malware Analysis,Malware-Analysis-and-Reversing-Workshop]
+image: assets/logo/MAARE.png
 ---
 
 ## Executive Summary
