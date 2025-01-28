@@ -74,9 +74,9 @@ The prefix string exec causes the malware to execute arbitrary commands on the i
 ---
 
 ## IOCs
-| IOC                          | Type                                |
-|------------------------------|-------------------------------------|
-| 127[.]26[.]152[.]13[:]80	| IP:PORT |
+| IOC                        | Type        |
+|----------------------------|-------------|
+| 127.26.152.13:80           | IP:PORT     |
 
 ---
 
