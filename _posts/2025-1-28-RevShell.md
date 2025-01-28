@@ -5,9 +5,6 @@ categories: [Malware Analysis]
 tags: [Malware Analysis]
 ---
 
-![img](assets/11-Revshell.exe/image1.png)
-
-
 ## Executive Summary
 
 The method of found involves using msfvenom to generate a payload that creates a bind shell for remote access, which is then embedded into a program that hides its console window, allocates memory for the payload, and executes it through a new thread.
