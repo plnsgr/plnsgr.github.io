@@ -8,6 +8,7 @@ tags: [Malware Analysis]
 ## Executive Summary
 
 The malware analyzed script employs a PowerShell-based obfuscation technique using Base64 encoding and XOR manipulation to conceal its payload. The malware communicates with a command and control(C2) server via Telegram’s API and leverages various system registry keys to establish persistence and facilitate data retrieval. It was initial download from the Macro template that  injection using a malicious URL hosted on `GitHub` inside the document file. Key functionalities include fetching the victim's public IP address, sending data to the `Telegram` C2 server, and utilizing obfuscated commands to execute its operations.
+
 ---
 
 ## Case Details
