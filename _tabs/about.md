@@ -7,19 +7,12 @@ order: 4
 ## ROAMING INSIDE G1ZZA
 
 ```bash
-┌──(osiris㉿ALICE)-[~]
-└─$ whoami
+λ ALICE ~ → whoami
 OS1RIS
 ```
 
 <h1 align="center">Hello, I'm OS1RIS</h1>
 <h3 align="center">| Committed to Lifelong Learning and Growth | Passionate Coder and Cybersecurity Enthusiast | CTF Player |</h3>
-
-- 🌱 I’m currently learning **Cybersecurity**
-
-- 📫 How to reach me: **loling.lol96@gmail.com**
-
-- ⚡ Fun Fact: **I sleep alot**
 
 ```bash
 ┌──(osiris㉿ALICE)-[~]
@@ -30,27 +23,13 @@ OS1RIS
 
 ### 4b0ut M3
 
-As an aspiring cybersecurity professional currently pursuing a Computer System Security degree, I bring a solid foundation in
+I’m an Incident Response professional with a keen interest in malware analysis and reverse engineering. I dedicate a lot of time to studying malware, understanding its behavior, and dissecting it to improve my skills. My focus is on learning and deepening my knowledge of malware, with a passion for reverse engineering techniques.
 
-embedded systems engineering. With proficiency in various programming languages and Linux, I have the knowledge and skills
 
-required to excel in the field of computer security.
+<h3 align="center"><script src="https://cyberdefenders.org/p/os1ris/badge"></script></h3>
 
-### T4LKInG a8oU7 PeR5ONA1 STUFF
-
-- 🛠 &nbsp; Student: (Hons.) in Computer System Security
-- 👾 &nbsp; Fun fact: I Sleep alot
-
-### MY 48sOLu7e fAv0rI7ES
-
-- 💻 &nbsp; I love exploring new technologies and building cool stuff.
-- 🍕 &nbsp; Reading, Pwn & Repeat
-
-<script src="https://cyberdefenders.org/p/os1ris/badge"></script>
-
-```js
-┌──(osiris㉿ALICE)-[~]
-└─$ exit
+```bash
+λ ALICE ~ → exit
 ```
 
-bWVtb3JpZXMgb2YgdGhlIGludGVybmV0LCB3ZSBnb3R0YSBnbyAid2F5YmFjayI=
+ZmxhZ3tPUzFSSVNfbjN2M3JfNHNrX1kwdV90MF9kM2MwZDNfdGgzczN9Cg
