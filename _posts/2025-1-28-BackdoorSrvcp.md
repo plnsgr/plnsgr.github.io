@@ -5,7 +5,6 @@ categories: [Malware Analysis]
 tags: [Malware Analysis]
 ---
 
-# Backdoor SRVCP
 
 ## Executive Summary
 
