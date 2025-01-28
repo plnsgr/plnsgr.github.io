@@ -115,7 +115,7 @@ Additional decoded:
 ![img15](assets/2-BubarParlimen/image20.png)
 
 7.	File Write Operations:
--	The decoded content from lgstr is saved to a temporary file sl1.tmp and sl2.tmp.
+-	The decoded content from lgstr is saved to a temporary file `sl1.tmp` and `sl2.tmp`.
 
 ![img16](assets/2-BubarParlimen/image21.png)
 
@@ -123,8 +123,6 @@ Additional decoded:
 
 
 ---
-
-## Indicators of Compromise (IOCs)
 
 ## Indicators of Compromise (IOCs)
 
