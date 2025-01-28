@@ -1,8 +1,8 @@
 ---
 title: "SnakeKeylogger"
 date: 2025-1-28
-categories: [Malware Analysis]
-tags: [Malware Analysis]
+categories: [Malware Analysis,Malware-Analysis-and-Reversing-Workshop]
+tags: [Malware Analysis,Malware-Analysis-and-Reversing-Workshop]
 ---
 
 ## Executive Summary
