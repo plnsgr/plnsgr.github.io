@@ -26,14 +26,12 @@ OS1RIS
 I’m an Incident Response professional with a keen interest in malware analysis and reverse engineering. I dedicate a lot of time to studying malware, understanding its behavior, and dissecting it to improve my skills. My focus is on learning and deepening my knowledge of malware, with a passion for reverse engineering techniques.
 
 
-<h3 align="center">
-  <a href="https://cyberdefenders.org/p/os1ris">
-    <img src="https://cyberdefenders.org/p/os1ris/badge" alt="OS1RIS Badge">
-  </a>
-</h3>
+<script src="https://cyberdefenders.org/p/os1ris/badge"></script>
 
 ```bash
 λ ALICE ~ → exit
 ```
+
+---
 
 ZmxhZ3tPUzFSSVNfbjN2M3JfNHNrX1kwdV90MF9kM2MwZDNfdGgzczN9Cg
