@@ -42,7 +42,7 @@ This document provides a detailed analysis of the SnakeKeylogger malware. Upon o
 
 Using **OLEVBA**, it was observed that the macro present in the `.docm` file contains the following malicious code:
 
-![Macro Code](assets/1-SnakeKeylogger/image2.png)
+![img1](assets/1-SnakeKeylogger/image2.png)
 
 The macro is programmed to execute upon opening the document using the `AutoOpen` function. It:
 - Downloads an executable file `nawBVBlSWH7iu7T.scr` from a malicious URL.
@@ -60,19 +60,19 @@ The macro is programmed to execute upon opening the document using the `AutoOpen
 ### **Wireshark Analysis**
 Using **Wireshark**, communication with the Command and Control (C2) server was identified. The captured traffic confirmed the malicious GET request to the C2 server:
 
-![Wireshark Traffic](assets/1-SnakeKeylogger/image3.png)
+![img2](assets/1-SnakeKeylogger/image3.png)
 
 ### **Fakenet Analysis**
 With **Fakenet**, similar results were obtained. The tool detected the same C2 server and the GET request used by the malware to download the payload:
 
-![Fakenet Traffic](assets/1-SnakeKeylogger/image4.png)
+![img3](assets/1-SnakeKeylogger/image4.png)
 
 ### **File Location**
 The malicious payload is saved to:
 
 `C:\ProgramData\nawBVBlSWH7iu7T.scr`
 
-![File Location](assets/1-SnakeKeylogger/image5.png)
+![img4](assets/1-SnakeKeylogger/image5.png)
 
 ---
 
