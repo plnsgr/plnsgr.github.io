@@ -59,11 +59,15 @@ C:\ProgramData\nawBVBlSWH7iu7T.scr | Excutable Path |
 
 Full path of the downloaded executable include File name
 •	hxxp[://]52575815-38-20200406120634[.]webstarterz[.]com/nawBVBlSWH7iu7T[.]scr|
+
 Auto-execution function used in the malicious document to automatically execute the malicious code
 •	AutoOpen|
+
 HTTP method is used
 •	GET|
+
 COM object is used to handle binary data and save the downloaded file
 •	ADODB.Stream|
+
 Object is used to send HTTP requests
 •	WinHttp.WinHttpRequest.5.1|
