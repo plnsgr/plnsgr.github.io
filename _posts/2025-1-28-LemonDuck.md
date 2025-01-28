@@ -8,6 +8,7 @@ tags: [Malware Analysis]
 ## Executive Summary
 
 A sophisticated powershell script attack leveraging scheduled tasks, WMI (Windows Management Instrumentation), and RSA encryption to maintain persistence on compromised systems. The script downloads an executable from a hardcoded URL, validates it using RSA, and executes it under hidden PowerShell commands. It creates and schedules tasks at regular intervals (every 60 or 120 minutes) to ensure continuous execution, often running with elevated privileges or SYSTEM account. Additionally, it interacts with WMI to execute commands, including obfuscated PowerShell scripts, and modifies system settings such as disabling compression via the Windows registry. The attack is persistent, with randomized task names and continuous re-execution, making it difficult to detect or remove without proper monitoring.
+
 ---
 
 ## Case Details
