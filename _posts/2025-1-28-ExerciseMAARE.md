@@ -3,6 +3,7 @@ title: "Assembly Exercise"
 date: 2025-1-28
 categories: [Assembly,Malware-Analysis-and-Reversing-Workshop]
 tags: [Assembly,Malware-Analysis-and-Reversing-Workshop]
+image: assets/logo/MAARE.png
 ---
 
 ## Executive Summary
