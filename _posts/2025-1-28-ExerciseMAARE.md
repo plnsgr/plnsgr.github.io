@@ -74,8 +74,10 @@ Now Goto `Edit>Patch program>Apply patches to input file…`
  
 It will pop something like this below, just hit `‘ok’`:
 
+
 ![img](assets/13-Exercise/image235.png)
- 
+
+
 Run the file and we get the flag:
 
 ![img](assets/13-Exercise/image236.png)
