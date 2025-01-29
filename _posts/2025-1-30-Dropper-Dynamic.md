@@ -1,6 +1,6 @@
 ---
 title: "Dropper Dynamic"
-date: 2025-1-30
+date: 2025-1-29
 categories: [Malware Analysis, Malware-Analysis-and-Reversing-Workshop]
 tags: [Malware Analysis, Malware-Analysis-and-Reversing-Workshop]
 image: assets/logo/MAARE.png
