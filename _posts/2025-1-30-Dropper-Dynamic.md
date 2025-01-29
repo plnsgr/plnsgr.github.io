@@ -91,7 +91,7 @@ Using **ApiMonitor**, running `dropper.exe` initiates the following behavior:
 
 ![img](assets/14-Dropper-Dynamic/image11.png)
 
-3. The executable performs actions like enumerating processes (`EnumProcesses`), retrieving module names (`GetModuleBaseNameA`), and attempting to access processes like `winlogon.exe` using `OpenProcess`. However, access to `winlogon.exe` is denied due to insufficient permissions, as indicated by `"Access is denied"` errors and invalid handle responses (0x00000005).
+2. The executable performs actions like enumerating processes (`EnumProcesses`), retrieving module names (`GetModuleBaseNameA`), and attempting to access processes like `winlogon.exe` using `OpenProcess`. However, access to `winlogon.exe` is denied due to insufficient permissions, as indicated by `"Access is denied"` errors and invalid handle responses (0x00000005).
 
 ![img](assets/14-Dropper-Dynamic/image12.png)
 
