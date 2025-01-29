@@ -77,7 +77,7 @@ Using **Floss**, a mysterious URL was discovered that wasn't visible during the 
 
 ![img](assets/14-Dropper-Dynamic/image9.png)
 
-This URL was further inspected using **Resource Hacker**.
+Using **Resource Hacker** to locate the URL.
 
 ![img](assets/14-Dropper-Dynamic/image10.png)
 
