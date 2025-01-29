@@ -1,5 +1,5 @@
 ---
-title: "Dropper (Dynamic)"
+title: "Dropper Dynamic"
 date: 2025-1-30
 categories: [Malware Analysis, Malware-Analysis-and-Reversing-Workshop]
 tags: [Malware Analysis, Malware-Analysis-and-Reversing-Workshop]
