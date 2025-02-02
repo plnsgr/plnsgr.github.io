@@ -1,6 +1,6 @@
 ---
 title: "Nullcon HackIM CTF 2025"
-date: 2025-1-2
+date: 2025-2-1
 categories: [CTF]
 tags: [CTF]
 image: assets/CTF/nullcon-2025/nullcon-sponsor-banner.jpg
