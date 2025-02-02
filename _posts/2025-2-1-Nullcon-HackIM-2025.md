@@ -1,12 +1,12 @@
 ---
-title: "Nullcon HackIM CTF 2025"
+title: "Nullcon HackIM CTF 2025 (Reverse)"
 date: 2025-2-1
 categories: [CTF]
 tags: [CTF]
 image: assets/CTF/nullcon-2025/nullcon-sponsor-banner.jpg
 ---
 
-# flag checker
+## flag checker
 
 | **Description**                          |
 |------------------------------------------|
@@ -14,7 +14,7 @@ image: assets/CTF/nullcon-2025/nullcon-sponsor-banner.jpg
 
 ---
 
-## Observation
+### Observation
 
 Running in **IDA** , upon entering the text, it will check on `sub_127A` to see the input return value. Below is `main function`:
 
@@ -102,7 +102,7 @@ After:
 
 ---
 
-## Solution
+### Solution
 
 Original Process: The C function sub_11E9 applies the following steps to each byte:
 1. XORs the byte with 0x5A
@@ -127,7 +127,7 @@ print(rev(e).decode())
 
 ---
 
-### **Execution**
+#### **Execution**
 ```bash
 ┌──(myenv)(osiris㉿ALICE)-[~/Downloads/CTF/nullcon/rev/flag_check]
 └─$ python sol.py
@@ -137,7 +137,7 @@ ENO{R3V3R53_3NG1N33R1NG_M45T3R!!!}
 
 ---
 
-# scrambled
+## scrambled
 
 | **Description**                          |
 |------------------------------------------|
@@ -181,7 +181,7 @@ result: 1e78197567121966196e757e1f69781e1e1f7e736d6d1f75196e75191b646e196f646551
 
 ---
 
-## Obversation
+### Obversation
 The `main.py` script scrambles the flag by:
 1. **XOR** each character with a key.
 2. Splitting the result into chunks of **4 bytes**.
@@ -189,7 +189,7 @@ The `main.py` script scrambles the flag by:
 
 ---
 
-## Solution
+### Solution
 To decode the scrambled flag, the solution script:
 1. Converts the scrambled hex output back into **bytes**.
 2. Reverses the shuffling using brute force on the **seed (range 0-10)**.
@@ -231,7 +231,7 @@ if __name__ == "__main__":
 
 ---
 
-### **Execution**
+#### **Execution**
 ```bash
 ┌──(myenv)(osiris㉿ALICE)-[~/Downloads/CTF/nullcon/rev/scramble]
 └─$ python solution.py
