@@ -92,7 +92,7 @@ Before:
 
 After:
 
-```
+```assembly
 .rodata:0000000000002020 ; _BYTE byte_2020[34]
 .rodata:0000000000002020 byte_2020       db 248, 168, 184, 33, 96, 115, 144, 131, 128, 195, 155
 .rodata:0000000000002020                                         ; DATA XREF: sub_127A+63↑o
@@ -104,7 +104,7 @@ After:
 
 ### Solution
 
-Original Process: The C function sub_11E9 applies the following steps to each byte:
+Original Process: The C function `sub_11E9` applies the following steps to each byte:
 1. XORs the byte with 0x5A
 2. Adds the current index
 3. Rotates the resulting byte (right by 5 bits, left by 3 bits)
