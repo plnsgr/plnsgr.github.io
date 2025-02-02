@@ -181,7 +181,8 @@ result: 1e78197567121966196e757e1f69781e1e1f7e736d6d1f75196e75191b646e196f646551
 
 ---
 
-### Obversation
+### Observation
+
 The `main.py` script scrambles the flag by:
 1. **XOR** each character with a key.
 2. Splitting the result into chunks of **4 bytes**.
