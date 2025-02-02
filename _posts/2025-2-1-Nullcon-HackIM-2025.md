@@ -105,13 +105,13 @@ After:
 ### Solution
 
 Original Process: The C function `sub_11E9` applies the following steps to each byte:
-1. XORs the byte with 0x5A
-2. Adds the current index
-3. Rotates the resulting byte (right by 5 bits, left by 3 bits)
+1. **XORs** the byte with **0x5A**
+2. **Adds** the current index
+3. Rotates the resulting byte (right by **5 bits**, left by **3 bits**)
 
 Reverse Process: To reverse the transformation here how it done:
 1. Reverses the bitwise rotation
-2. Subtracts the index value
+2. **Subtracts** the index value
 3. **XOR** with **0x5A** to restore the original byte
 
 Code:
@@ -193,7 +193,7 @@ The `main.py` script scrambles the flag by:
 To decode the scrambled flag, the solution script:
 1. Converts the scrambled hex output back into **bytes**.
 2. Reverses the shuffling using brute force on the **seed (range 0-10)**.
-3. **XORs each byte** with the key to retrieve the original flag.
+3. **XORs each byte** with the key to retrieve the original text.
 
 ```python
 import random
