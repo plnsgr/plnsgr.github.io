@@ -116,7 +116,7 @@ The visible import table does not contain typical payload allocation or remote-i
 
 The DLL entry point is located at virtual address `0x10001304`. The initial code contains extensive low-value repeated instructions and then reaches an indirect-looking trampoline:
 
-![img](assets/raspberryrobbin/1.png)
+![img](assets/raspberryrobin/1.png)
 
 ```asm
 0x10001340  call fcn.1000130f
@@ -129,13 +129,13 @@ fcn.1000130f:
 
 This `push`/`ret` transfer enters hidden loader logic at `0x100010a3` while making straightforward control-flow recovery less obvious.
 
-![img](assets/raspberryrobbin/2.png)
+![img](assets/raspberryrobin/2.png)
 
 ### Loader and Anti-Analysis Behavior
 
 The recovered loader path references the strings `SElf.eXe` and UTF-16 `TEstapp.exe`, and invokes `LoadLibraryExA`/`LoadLibraryExW` around these constructed names. The naming and unusual case pattern are consistent with decoy or environment-oriented loading logic rather than normal application functionality.
 
-![img](assets/raspberryrobbin/3.png)
+![img](assets/raspberryrobin/3.png)
 
 Additional code invokes:
 
@@ -146,7 +146,7 @@ Additional code invokes:
 
 The `IsDebuggerPresent` and exception/termination path provides direct evidence of anti-debug behavior. Some of the remaining unusual API use may form anti-emulation, decoy, or loader housekeeping logic; no dynamic validation was performed.
 
-![img](assets/raspberryrobbin/4.png)
+![img](assets/raspberryrobin/4.png)
 
 ### In-Memory PE Reconstruction
 
