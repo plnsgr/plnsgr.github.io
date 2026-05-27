@@ -5,16 +5,6 @@ categories: [Malware Analysis]
 tags: [Malware Analysis]
 ---
 
-# Raspberry Robin DLL Loader
-
-## Report Summary
-
-| Field | Finding |
-| --- | --- |
-| Report date | 2026-05-27 |
-| artifact | `BAWhi.SkinEditor.Design.dll` |
-| Classification | Raspberry Robin DLL loader component |
-
 ## Executive Summary
 
 The supplied file is a 32-bit Windows DLL attributable to **Raspberry Robin**. Attribution is high confidence because its exact SHA-256 hash appears in Zscaler ThreatLabz's published indicator table as a Raspberry Robin DLL. Static inspection indicates that this artifact is a packed or encrypted loader stage rather than a transparently readable final payload.
