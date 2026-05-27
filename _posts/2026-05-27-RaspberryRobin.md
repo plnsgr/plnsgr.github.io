@@ -231,8 +231,6 @@ The most precise answer is:
 | ASCII string | `SElf.eXe` | Loader-path string |
 | UTF-16 string | `TEstapp.exe` | Loader-path string |
 
-No clear-text URL, `.onion` address, or C2 hostname was recovered from the static outer DLL.
-
 ## MITRE ATT&CK Mapping
 
 | Technique | ID | Basis | Confidence |
