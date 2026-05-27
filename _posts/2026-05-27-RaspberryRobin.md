@@ -12,7 +12,7 @@ tags: [Malware Analysis]
 | Field | Finding |
 | --- | --- |
 | Report date | 2026-05-27 |
-| Submitted artifact | `05c6f53118d363ee80989ef37cad85ee1c35b0e22d5dcebd8a6d6a396a94cb65.dll` |
+| artifact | `BAWhi.SkinEditor.Design.dll` |
 | Classification | Raspberry Robin DLL loader component |
 
 ## Executive Summary
@@ -23,7 +23,7 @@ The DLL contains two very large, high-entropy data sections, sparse imported fun
 
 No separately extractable secondary dropper, valid nested PE file, or valid embedded archive was recovered from the DLL at rest. The file does, however, include loader code capable of producing or transferring execution to an opaque in-memory stage. A controlled unpacking/detonation phase would be required to recover that stage for independent hashing and full component analysis.
 
-For injection technique classification, the local DLL demonstrates **in-memory PE reconstruction/manual loading** into executable memory. Zscaler ThreatLabz reports that newer Raspberry Robin core payloads perform **early-bird Asynchronous Procedure Call (APC) process injection** using `NtQueueApcThread`, with candidate target processes including `cleanmgr.exe`, `rundll32.exe`, and `dllhost.exe`. ThreatLabz also reports that older Raspberry Robin versions used process hollowing.
+For injection technique classification, the local DLL demonstrates **in-memory PE reconstruction/manual loading** into executable memory. Zscaler ThreatLabz reports that newer Raspberry Robin core payloads perform **early-bird Asynchronous Procedure Call (APC) process injection** using `NtQueueApcThreadEx2`, with candidate target processes including `cleanmgr.exe`, `rundll32.exe`, and `dllhost.exe`.
 
 ## Scope and Methodology
 
@@ -41,7 +41,7 @@ Static examination included:
 
 | Attribute | Value |
 | --- | --- |
-| Original filename | `05c6f53118d363ee80989ef37cad85ee1c35b0e22d5dcebd8a6d6a396a94cb65.dll` |
+| Original filename | `BAWhi.SkinEditor.Design.dll` |
 | File size | 5,353,472 bytes |
 | File format | PE32 Windows DLL, GUI subsystem |
 | Architecture | Intel x86 / 32-bit |
@@ -264,7 +264,7 @@ The supplied DLL is a high-confidence Raspberry Robin loader artifact and should
 
 ## Sources
 
-### Public Research
+### References
 
 1. Zscaler ThreatLabz, **Tracking Updates to Raspberry Robin**, 2025-08-06. Exact SHA-256 identification and newer-variant technical context: [https://www.zscaler.com/fr/blogs/security-research/tracking-updates-raspberry-robin](https://www.zscaler.com/fr/blogs/security-research/tracking-updates-raspberry-robin)
 2. Zscaler ThreatLabz, **Unraveling Raspberry Robin's Layers: Analyzing Its Obfuscation Techniques and Execution Methods**, 2023-12-11. Loader structure and injection-method discussion: [https://www.zscaler.com/fr/blogs/security-research/unraveling-raspberry-robin-s-layers-analyzing-obfuscation-techniques-and](https://www.zscaler.com/fr/blogs/security-research/unraveling-raspberry-robin-s-layers-analyzing-obfuscation-techniques-and)
