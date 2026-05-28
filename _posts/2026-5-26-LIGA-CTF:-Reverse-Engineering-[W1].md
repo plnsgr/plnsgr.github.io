@@ -913,6 +913,7 @@ Beep. Beep. Boop. It's the age of robots now! Let's see if you can overcome the 
 
 Found at `0x140fa0980` (called from MinGW startup at `0x140fa0980`):
 
+{% raw %}
 ```
 main:
   cmp esi, 1                  ; argc == 1?
@@ -959,6 +960,7 @@ main:
 .print_flag:
   printf("OWASPKL{%s}\n", output_buf)
 ```
+{% endraw %}
 
 Key observations:
 
