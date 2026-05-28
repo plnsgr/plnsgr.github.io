@@ -1470,7 +1470,7 @@ Flag: `OWASPKL{D1d_u_s33_th4t_c0m1ng?}`
 
 ---
 
-# **Only Solve this if you are bored - I**
+## **Only Solve this if you are bored - I**
 
 This challenge has no writeup. It is a real C2 agent beacon that is pointing to an address that is not publicly accessible via WAN.
 
@@ -1536,7 +1536,7 @@ Flag: `OWASPKL{sliver}`
 
 ---
 
-# **Only Solve this if you are bored - II**
+## **Only Solve this if you are bored - II**
 
 ### Dynamic Analysis
 
@@ -1602,7 +1602,7 @@ Flag: `OWASPKL{192.168.91.243}`
 
 ---
 
-# Hall Of Fame
+## Hall Of Fame
 
 ![](https://www.notion.so/image/attachment%3Af967c592-ca70-4be1-a168-ad368cd5ec4a%3Aimage.png?table=block&id=36a26e60-5e7e-8033-a617-c721c97036a7&spaceId=2b1ea456-18af-403c-953f-e1f8e610fc0e&width=1220&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
 
