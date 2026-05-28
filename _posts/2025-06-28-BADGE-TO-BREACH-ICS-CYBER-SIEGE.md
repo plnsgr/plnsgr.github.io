@@ -107,7 +107,7 @@ Flag: `prelim{pretty_simple_for_a_start}`
 
 ## **Oasis**
 
-Find the Oasis testnet [explorer.oasis.io](http://explorer.oasis.io/)
+Find the Oasis testnet
 
 Then, insert the address given to get the contract
 
