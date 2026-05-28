@@ -803,8 +803,6 @@ Flag: `OWASPKL{fd51b8da-cb27-4b4e-bf3c-de6a114f3a2e}`
 
 You are given a stripped 64‑bit ELF deadlocker and the address of a remote server. The deadlocker contacts the server, receives an encrypted flag, and decrypts it locally. Your task is to reverse‑engineer the binary, understand the cryptographic operations, and write your own client to fetch and decrypt the flag.
 
-Server: [lockbox.appsecmy.com](http://lockbox.appsecmy.com/) 9999
-
 Flag format: OWASPKL{...}
 
 ### Flow process
@@ -1349,7 +1347,6 @@ Flag: `OWASPKL{4a155fbe1dad9d74950b34b514edc4ae}`
 
 You are given a respawn 64‑bit ELF wraithlocker and the address of a remote server. The wraithlocker contacts the server, receives an encrypted flag, and decrypts it locally. Your task is to reverse‑engineer the binary, understand the cryptographic operations, and write your own client to fetch and decrypt the flag.
 
-Server: [lockbox.appsecmy.com](http://lockbox.appsecmy.com/) 9999
 
 Flag format: OWASPKL{...}
 
