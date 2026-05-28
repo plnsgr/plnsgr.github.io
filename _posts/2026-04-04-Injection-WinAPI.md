@@ -1,14 +1,14 @@
 ---
 title: "Injection WinAPI"
 date: 2026-04-04
-categories: [Reverse][Malware Analysis]
-tags: [Reverse][Malware Analysis]
+categories: [Reverse,Malware Analysis]
+tags: [Reverse,Malware Analysis]
 image: assets/logo/ida-ascii-art.png
 ---
 
 This is a note to easily set a breakpoint in the future.
 
-# Classic Process Injection
+## Classic Process Injection
 
 > inject the legitimate process
 
@@ -26,7 +26,7 @@ This is a note to easily set a breakpoint in the future.
   - CreateRemoteThread
   - NtCreateThreadEx
 
-## API calls
+### API calls
 
 Kernel32.dll:
 
@@ -48,7 +48,7 @@ Ntdll.dll:
 
 ---
 
-# APC Code Injection
+## APC Code Injection
 
 *earlybird*
 
@@ -73,7 +73,7 @@ Ntdll.dll:
 
 ---
 
-# Section Mapping
+## Section Mapping
 
 > ![](https://www.notion.so/image/attachment%3Af46337cc-aa8c-4842-bd53-5802633f0b56%3Aimage.png?table=block&id=33726e60-5e7e-8055-b13c-f639c3df81ff&spaceId=2b1ea456-18af-403c-953f-e1f8e610fc0e&width=1150&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
 
@@ -94,7 +94,7 @@ Ntdll.dll:
 
 ---
 
-# **Module Stomping**
+## **Module Stomping**
 
 > ![](https://www.notion.so/image/attachment%3Af5391fb1-886f-41ec-8c0a-a69a3dcb63c5%3Aimage.png?table=block&id=33726e60-5e7e-80b3-bb0b-fabc79314a6c&spaceId=2b1ea456-18af-403c-953f-e1f8e610fc0e&width=1150&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
 
@@ -112,7 +112,7 @@ Ntdll.dll:
 - Create a thread to execute the payload
   - CreateRemoteThread
 
-## API
+### API
 
 - Kernel32.dll:  
 OpenProcess, ReadProcessMemory, WriteProcessMemory, VirtualAllocEx, VirtualProtectEx, CreateRemote Thread
@@ -123,7 +123,7 @@ NtAllocateVirtualMemory
 
 ---
 
-# Process Hollowing
+## Process Hollowing
 
 > ![](https://www.notion.so/image/attachment%3Aebf14329-3d35-4215-b1ca-ae3331434c2e%3Aimage.png?table=block&id=33726e60-5e7e-8085-b785-f07c81dacbdf&spaceId=2b1ea456-18af-403c-953f-e1f8e610fc0e&width=1150&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
 
@@ -150,7 +150,7 @@ NtAllocateVirtualMemory
 - Resume main thread of target process
   - ResumeThread
 
-## API
+### API
 
 - Kernel32.dll:  
 CreateProcessA, ReadProcess Memory, WriteProcess Memory, Get ThreadContext, Set ThreadContext, Resume Thread
@@ -159,7 +159,7 @@ NtQueryInformation Process, NtUnmap View Of Section/ZwUnmap View Of Section
 
 ---
 
-# **Process Doppleganging**
+## **Process Doppleganging**
 
 > ![](https://www.notion.so/image/attachment%3A1dfc4f45-38d6-474e-8f99-0e72ff4222af%3Aimage.png?table=block&id=33726e60-5e7e-8058-9c98-ff3520f252b7&spaceId=2b1ea456-18af-403c-953f-e1f8e610fc0e&width=1150&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
 
@@ -178,7 +178,7 @@ Steps of Doppelganging can be broken down into 4 steps:
   1. NtCreateProcessEx
   1. NtCreateThreadEx
 
-## API
+### API
 
 - KtmW32.dll:  
 Create Transaction, Rollback Transaction
@@ -189,7 +189,7 @@ NtCreate Section, NtCreateProcessEx, NtCreate ThreadEx
 
 ---
 
-# **Transacted Hollowing**
+## **Transacted Hollowing**
 
 > ![](https://www.notion.so/image/attachment%3A00b74f4e-a44f-4999-9ad2-e8ae2c210b24%3Aimage.png?table=block&id=33726e60-5e7e-800a-932b-d78c5095e3ee&spaceId=2b1ea456-18af-403c-953f-e1f8e610fc0e&width=980&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
 
@@ -220,7 +220,7 @@ NtCreate Section, NtCreateProcessEx, NtCreate ThreadEx
 - Resume the thread
   - NtResumeThread
 
-## API
+### API
 
 - Kernel32.dll:  
 CreateFile TransactedW, Write File, CreateProcess W, Resume Thread, Get ThreadContext, Set ThreadContext, Resume Thread
@@ -229,7 +229,7 @@ NtQueryInformationProcess, NtCreate Transaction, NtCreateSection, NtRollback Tra
 
 ---
 
-# **Process Herpaderping**
+## **Process Herpaderping**
 
 > ![](https://www.notion.so/image/attachment%3A6233fbd6-f9ef-4afc-9484-fc0b2072563e%3Aimage.png?table=block&id=33726e60-5e7e-809a-82ad-da2ae12a47d3&spaceId=2b1ea456-18af-403c-953f-e1f8e610fc0e&width=1150&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
 
@@ -253,7 +253,7 @@ NtQueryInformationProcess, NtCreate Transaction, NtCreateSection, NtRollback Tra
 - Close temp file handle
   - Close Handle
 
-## API
+### API
 
 - Kernel32.dll:  
 CreateFileW, Write File, SetFilePointer, CloseHandle
@@ -262,7 +262,7 @@ NtOpenFile, NtSetInformationFile, NtCreate Section, NtCreateProcessEx, NtCreateP
 
 ---
 
-# **Process Ghosting**
+## **Process Ghosting**
 
 > ![](https://www.notion.so/image/attachment%3Adc1c33d7-ee4c-4469-bcf6-2aed09cd2ca6%3Aimage.png?table=block&id=33726e60-5e7e-8052-a5f1-eb28edfdbf75&spaceId=2b1ea456-18af-403c-953f-e1f8e610fc0e&width=1150&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
 
@@ -284,7 +284,7 @@ NtOpenFile, NtSetInformationFile, NtCreate Section, NtCreateProcessEx, NtCreateP
 - Create a new thread
   - NtCreateThreadEx
 
-## API
+### API
 
 - Kernel32.dll:  
 WriteFile, CloseHandle
