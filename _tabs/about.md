@@ -4,15 +4,11 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-<div align="center">
-
 # OS1RIS
 
 ### Incident Response · Malware Analysis · Reverse Engineering · CTF Player
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0e76a8?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/najiyholdingtheankh)
-
-</div>
 
 ---
 
@@ -53,11 +49,8 @@ This site is where I share my research notes, technical writeups, malware analys
 
 For professional connection or discussion, you can reach me through LinkedIn.
 
-<div align="center">
-
 [![LinkedIn](https://img.shields.io/badge/Connect%20on%20LinkedIn-0e76a8?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/najiyholdingtheankh)
 
-</div>
 
 <!--
 ZmxhZ3tPUzFSSVNfbjN2M3JfNHNrX1kwdV90MF9kM2MwZDNfdGgzczN9Cg
