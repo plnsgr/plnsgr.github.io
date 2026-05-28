@@ -4,37 +4,61 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-## ROAMING INSIDE G1ZZA
+<div align="center">
 
-```bash
-λ ALICE ~ → whoami
-OS1RIS
-```
+# OS1RIS
 
-<h1 align="center">Hello, I'm OS1RIS</h1>
-<h3 align="center">| Committed to Lifelong Learning and Growth | Passionate Coder and Cybersecurity Enthusiast | CTF Player |</h3>
+### Incident Response · Malware Analysis · Reverse Engineering · CTF Player
 
-```bash
-┌──(osiris㉿ALICE)-[~]
-└─$ sudo nano profile
-```
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0e76a8?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/najiyholdingtheankh)
 
-[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-0e76a8?style=flat-square&logo=Linkedin&logoColor=white)](https://linkedin.com/in/najiyholdingtheankh)
-
-### 4b0ut M3
-
-An Incident Response with a keen interest in malware analysis and reverse engineering. I dedicate a lot of time to studying malware, understanding its behavior, and dissecting it to improve my skills. My focus is on learning and deepening my knowledge of malware, with a passion for reverse engineering techniques.
+</div>
 
 ---
+
+## About Me
+
+Hi, I’m **OS1RIS**.
+
+I work in **Incident Response** with a strong interest in **malware analysis**, **reverse engineering**, and **CTF challenges**.
+
+I spend a lot of time studying malware behavior, understanding how programs work internally, and improving my reverse engineering skills through hands-on analysis.
+
+This site is where I share my research notes, technical writeups, malware analysis reports, and CTF solutions.
+
+---
+
+## Areas of Interest
+
+| Area | Focus |
+|---|---|
+| **Incident Response** | Investigating security incidents and understanding attacker behavior |
+| **Malware Analysis** | Analyzing malware behavior, unpacking, and code flow |
+| **Reverse Engineering** | Studying binaries, APIs, assembly, and program logic |
+| **CTF** | Solving reverse engineering, crypto, forensics, and exploitation challenges |
+
+---
+
+## CyberDefenders
+
+<div align="center">
 
 <script src="https://cyberdefenders.org/p/os1ris/badge"></script>
 
----
-
-```bash
-λ ALICE ~ → exit
-```
+</div>
 
 ---
 
+## Contact
+
+For professional connection or discussion, you can reach me through LinkedIn.
+
+<div align="center">
+
+[![LinkedIn](https://img.shields.io/badge/Connect%20on%20LinkedIn-0e76a8?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/najiyholdingtheankh)
+
+</div>
+
+<!--
 ZmxhZ3tPUzFSSVNfbjN2M3JfNHNrX1kwdV90MF9kM2MwZDNfdGgzczN9Cg
+-->
