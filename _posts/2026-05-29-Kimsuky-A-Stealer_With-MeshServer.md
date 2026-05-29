@@ -10,15 +10,13 @@ image: assets/logo/ida-ascii-art.png
 
 The analyzed artifact is a ZIP-delivered Windows shortcut downloader masquerading as a text document and paired with a PDF lure. The local execution objective is remote payload retrieval through `mshta.exe`, launched by PowerShell `-EncodedCommand` embedded in a `.lnk` file.
 
-The sample targets Microsoft Windows hosts with PowerShell and MSHTML execution support. The initial local evidence confirms an execution chain from the LNK to PowerShell and then to `mshta.exe` with an HTTPS callback to `link24.kr`; later retrieved stages provide the native loader, infostealer, keylogger, and MeshAgent evidence described below.
+The sample targets Microsoft Windows hosts with PowerShell and MSHTML execution support. The initial local evidence confirms an execution chain from the LNK to PowerShell and then to `mshta.exe` with an HTTPS callback to `link24[.]kr`., later retrieved stages provide the native loader, infostealer, keylogger, and MeshAgent.
 
-Observed capabilities:
+This specific Kimsuky malware variant utilizes a MeshServer framework to establish communication with its Command and Control (C2) infrastructure and exfiltrate targeted files.
 
-- User-assisted execution through a weaponized Shell Link file.
-- Masquerading as a text file through `.txt.lnk` naming and icon metadata.
-- PowerShell UTF-16LE Base64 command staging.
-- LOLBin handoff to `mshta.exe` for remote HTA/script execution.
-- HTTPS retrieval from `https://link24.kr/1y0mZTc`.
+![](https://logpresso.com/media/en/2025-09-22-kimsuky-attack/diagram_1.png)
+
+> Image source: [Cyber Threat Analysis] Kimsuky attack disguised as sex offender notification | LogPresso. Logpresso. https://logpresso.com/en/blog/2025-09-22-kimsuky-attack. Published September 22, 2025.
 
 ## 2. Static Analysis
 
